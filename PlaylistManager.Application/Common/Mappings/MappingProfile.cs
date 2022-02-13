@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using PlaylistManager.Application.Playlists.Commands.CreatePlaylist;
+using PlaylistManager.Application.Playlists.Commands.UpdatePlaylist;
 using PlaylistManager.Application.Playlists.Queries.GetPlaylistsList;
+using PlaylistManager.Application.Playlists.Queries.GetVideosPlaylist;
 using PlaylistManager.Application.Videos.Queries.GetVideosList;
 using PlaylistManager.Core.Entities;
 using System;
@@ -31,6 +34,9 @@ namespace PlaylistManager.Application.Common.Mappings
 
             CreateMap<Playlist, PlaylistDTO>();
             CreateMap<Video, VideoDTO>();
+            CreateMap<CreatePlaylistCommand, Playlist>();
+            CreateMap<UpdatePlaylistCommand, Playlist>();
+            CreateMap<Video, VideosPlaylistDTO>();
         }
 
     }
