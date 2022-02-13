@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using PlaylistManager.Application.Playlists.Queries.GetPlaylistsList;
+using PlaylistManager.Application.Videos.Queries.GetVideosList;
+using PlaylistManager.Core.Entities;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -25,6 +28,9 @@ namespace PlaylistManager.Application.Common.Mappings
                 var methodInfo = type.GetMethod("Mapping");
                 methodInfo?.Invoke(instance, new object[] { this });
             }
+
+            CreateMap<Playlist, PlaylistDTO>();
+            CreateMap<Video, VideoDTO>();
         }
 
     }
