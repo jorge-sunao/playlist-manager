@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PlaylistManager.Application;
+using PlaylistManager.Application.Common.Interfaces;
 using PlaylistManager.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,12 @@ namespace PlaylistManager.API
 
             app.UseAuthorization();
 
+            using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+
+            IPlaylistsContext playlistContext = serviceScope.ServiceProvider.GetRequiredService<IPlaylistsContext>();
+            IVideosContext videoContext = serviceScope.ServiceProvider.GetRequiredService<IVideosContext>();
+            DataInitialiser.SeedData(playlistContext, videoContext).Wait();
+            
             app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
         }
     }

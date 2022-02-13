@@ -9,5 +9,6 @@ namespace PlaylistManager.Application.Common.Interfaces
         public List<Playlist> GetPlaylists();
         public Playlist GetPlaylist(int id);
         public Playlist AddPlaylist(Playlist playlistItem);
+        public List<Playlist> AddPlaylists(List<Playlist> playlistList);
     }
 }

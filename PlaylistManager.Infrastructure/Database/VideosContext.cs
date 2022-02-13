@@ -34,7 +34,21 @@ namespace PlaylistManager.Infrastructure.Database
 
         public List<Video> AddVideos(List<Video> videosList)
         {
-            _videos.AddRange(videosList);
+            List<Video> videosToAdd = new List<Video>();
+
+            foreach (var video in videosList)
+            {
+                if (video.DateCreated == DateTime.MinValue)
+                {
+                    video.DateCreated = DateTime.Now;
+                }
+
+                video.DateLastModified = DateTime.Now;
+
+                videosToAdd.Add(video);
+            }
+
+            _videos.AddRange(videosToAdd);
             return _videos;
         }
     }

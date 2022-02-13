@@ -37,5 +37,24 @@ namespace PlaylistManager.Infrastructure.Database
             _playlists.Add(playlistItem);
             return playlistItem;
         }
+
+        public List<Playlist> AddPlaylists(List<Playlist> playlistList)
+        {
+            List<Playlist> playlistToAdd = new List<Playlist>();
+
+            foreach(var playlist in playlistList)
+            {
+                if (playlist.DateCreated == DateTime.MinValue)
+                {
+                    playlist.DateCreated = DateTime.Now;
+                }
+                playlist.DateLastModified = DateTime.Now;
+
+                playlistToAdd.Add(playlist);
+            }
+
+            _playlists.AddRange(playlistToAdd);
+            return _playlists;
+        }
     }
 }
