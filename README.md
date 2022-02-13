@@ -6,7 +6,7 @@
 * [General Info](#general-information)
 * [Built With](#built-with)
 * [Features](#features)
-* [Usage in Visual Studio](#usage)
+* [Usage in Visual Studio](#usage-in-visual-studio)
 * [Room for Improvement](#room-for-improvement)
 
 
