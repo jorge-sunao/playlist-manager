@@ -34,6 +34,9 @@ namespace PlaylistManager.Infrastructure.Database
 
         public Playlist AddPlaylist(Playlist playlistItem)
         {
+            playlistItem.DateCreated = DateTime.Now;
+            playlistItem.DateLastModified = DateTime.Now;
+
             _playlists.Add(playlistItem);
             return playlistItem;
         }
@@ -55,6 +58,32 @@ namespace PlaylistManager.Infrastructure.Database
 
             _playlists.AddRange(playlistToAdd);
             return _playlists;
+        }
+
+        public Playlist UpdatePlaylist(int id, Playlist playlistItem)
+        {
+            for (var index = _playlists.Count - 1; index >= 0; index--)
+            {
+                if (_playlists[index].Id == id)
+                {
+                    playlistItem.DateLastModified = DateTime.Now;
+                    _playlists[index] = playlistItem;
+                }
+            }
+            return playlistItem;
+        }
+
+        public int DeletePlaylist(int id)
+        {
+            for (var index = _playlists.Count - 1; index >= 0; index--)
+            {
+                if (_playlists[index].Id == id)
+                {
+                    _playlists.RemoveAt(index);
+                }
+            }
+
+            return id;
         }
     }
 }
